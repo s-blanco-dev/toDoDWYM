@@ -10,6 +10,7 @@ function App() {
     <div style={{ margin: "20px", fontFamily: "Arial, sans-serif", listStyleType: "none"}}>
       <h1>📝 ToDo List</h1>
       <TaskList />
+
     </div>
   );
 };
