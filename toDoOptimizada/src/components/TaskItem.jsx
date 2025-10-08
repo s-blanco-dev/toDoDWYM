@@ -12,6 +12,14 @@ const TaskItem = ({ task }) => {
     </li>
   );
 };
+function EliminarTarea({ task, onDelete }) {
+    return (
+        <li>
+            <span>{task.title}</span> - <em>{task.description}</em>
+            <button onClick={() => onDelete(task.id)}>Eliminar</button>
+        </li>
+    );
+}
 
 export default TaskItem;
 
