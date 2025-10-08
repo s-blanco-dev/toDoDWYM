@@ -7,6 +7,7 @@ const TaskItem = ({ task }) => {
         <h3>{task.title}</h3>
         <hr/>
         {task.description}
+        <p>Prioridad: {task.priority}</p>
         <p>{task.completed ? "Eguro, completada" : "Pendiente"}</p>
       </span>
     </li>

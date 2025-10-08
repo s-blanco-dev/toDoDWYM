@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo} from "react";
 import TaskItem from "./TaskItem.jsx";
 const API_URL = "http://localhost:3000/tasks"; 
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
+  const [highPriorityVisible, setHighPriorityVisible] = useState(false);
+
+  const filteredTasks = useMemo(() => {
+    if (highPriorityVisible) {
+      return tasks.filter((t) => t.priority === "high");
+    }
+    else {
+      return tasks;
+    }
+  }, [tasks, highPriorityVisible]);
 
   useEffect(() => {
     fetch(API_URL)
@@ -12,11 +22,16 @@ const TaskList = () => {
     .catch((err) => console.error(err));
   }, []);
 
+  const pendingTasksCount = useMemo(() => {
+    return tasks.filter((t) => t.completed == false).length;
+  }, [tasks])
+
   return (
     <div>
-      <h1>Habemus Taream Sanctam</h1>
+      <button onClick={() => setHighPriorityVisible(!highPriorityVisible)}>{highPriorityVisible ? "Mostrar todas las tareas" : "Mostrar solo tareas de alta prioridad"}</button>
+    <h3>Tareas pendientes: {pendingTasksCount}</h3>
               <ul>
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <TaskItem
               key={task.id}
               task={task}
