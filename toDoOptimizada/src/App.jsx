@@ -1,17 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import TaskForm from './components/TaskForm'
+import { React, useState } from 'react'
 import './App.css'
+import TaskItem from './components/TaskItem'
+import TaskList from './components/TaskList'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+    <div style={{ margin: "20px", fontFamily: "Arial, sans-serif", listStyleType: "none"}}>
+      <h1>📝 ToDo List</h1>
+      <TaskList />
+    </div>
       <TaskForm/>
-    </>
-  )
-}
+  </>
+  );
+};
 
-export default App
+export default App;
