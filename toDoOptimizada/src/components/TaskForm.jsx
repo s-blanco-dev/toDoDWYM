@@ -4,6 +4,7 @@ import { useState } from "react";
 function TaskForm() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [priority, setPriority] = useState("");
     const inputRef = useRef(null);
     const url = "http://localhost:3000/tasks/";
 
@@ -18,6 +19,7 @@ function TaskForm() {
         const newTask = {
             title: title,
             description: description,
+            priority: priority,
             completed: false
         };
 
@@ -61,6 +63,10 @@ function TaskForm() {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+
+                <input type="checkbox" 
+                    onChange={(e) => setPriority(e.target.value)}
+                    value="high"/> Prioridad
                 <button type="submit">Agregar Tarea</button>
             </form>
         </div>
