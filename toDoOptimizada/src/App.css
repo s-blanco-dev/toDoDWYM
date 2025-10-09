@@ -1,47 +1,142 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General Reset */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  justify-content: center;
+  color: #333;
+}
+
+h1 {
   text-align: center;
+  margin-top: 20px;
+  color: #2c3e50;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h3 {
+  color: #34495e;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+input[type="text"],
+select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  min-width: 200px;
 }
 
-.card {
-  padding: 2em;
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.read-the-docs {
-  color: #888;
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Botones secundarios */
+button.secondary {
+  background-color: #95a5a6;
+}
+
+button.secondary:hover {
+  background-color: #7f8c8d;
+}
+
+/* Task list styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 800px;
 }
 
 li {
-  text-decoration: none;
-  list-style-type: none;
+  background-color: white;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+li span {
+  flex: 1;
+  min-width: 200px;
+}
+
+li h3, li h4 {
+  margin: 0 0 5px 0;
+}
+
+li p {
+  margin: 4px 0;
+}
+
+/* Prioridad por color */
+.high {
+  border-left: 5px solid #e74c3c;
+}
+.medium {
+  border-left: 5px solid #f39c12;
+}
+.low {
+  border-left: 5px solid #2ecc71;
+}
+
+/* Modo compacto */
+.compact h4 {
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.compact button {
+  margin-left: 10px;
+}
+
+/* Estado de tarea */
+.completed {
+  text-decoration: line-through;
+  color: #7f8c8d;
+}
+
+/* Contador y botones de filtro */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.controls button {
+  background-color: #8e44ad;
+}
+
+.controls button:hover {
+  background-color: #732d91;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }

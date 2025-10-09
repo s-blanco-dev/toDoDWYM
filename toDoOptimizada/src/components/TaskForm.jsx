@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 function TaskForm({ onAddTask }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [priority, setPriority] = useState("");
+    const [priority, setPriority] = useState("high");
     const inputRef = useRef(null);
     const url = "http://localhost:3000/tasks/";
 

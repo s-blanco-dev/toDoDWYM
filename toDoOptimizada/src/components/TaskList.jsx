@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useMemo, useCallback} from "react";
+import React, { useEffect, useState, useMemo, useCallback, useContext} from "react";
 import TaskItem from "./TaskItem.jsx";
 import TaskForm from "./TaskForm.jsx";
+import { DisplayModeContext } from "./DisplayModeContext.jsx";
 const API_URL = "http://localhost:3000/tasks"; 
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const [highPriorityVisible, setHighPriorityVisible] = useState(false);
+  const {displayMode, setDisplayMode} = useContext(DisplayModeContext);
 
   const filteredTasks = useMemo(() => {
     if (highPriorityVisible) {
@@ -50,15 +52,24 @@ const TaskList = () => {
         }, []);
 
     const pendingTasksCount = useMemo(() => {
-    return tasks.filter((t) => t.completed == false).length;
-    }, [tasks])
+      return filteredTasks.filter((t) => t.completed == false).length;
+    }, [filteredTasks])
 
   return (
     <div>
         <h1>Habemus Taream Sanctam</h1>
         <TaskForm onAddTask={handleAddTask} />
-      <button onClick={() => setHighPriorityVisible(!highPriorityVisible)}>{highPriorityVisible ? "Mostrar todas las tareas" : "Mostrar solo tareas de alta prioridad"}</button>
-    <h3>Tareas pendientes: {pendingTasksCount}</h3>
+
+      <div className="controls">
+        <button onClick={() => setDisplayMode(!displayMode)}>
+          {displayMode ? "Modo detallado" : "Modo compacto"}
+        </button>
+        <button onClick={() => setHighPriorityVisible(!highPriorityVisible)}>
+          {highPriorityVisible ? "Mostrar todas las tareas" : "Mostrar solo tareas de alta prioridad"}
+        </button>
+      </div>
+
+      <h3>Tareas pendientes: {pendingTasksCount}</h3>
               <ul>
           {filteredTasks.map((task) => (
             <TaskItem
