@@ -4,42 +4,49 @@
       "id": "1",
       "title": "Estudiar React",
       "description": "Repasar hooks básicos: useState, useEffect, useMemo",
-      "completed": false
+      "completed": false,
+      "priority": "medium"
     },
     {
       "id": "2",
       "title": "Hacer los deberes",
       "description": "Resolver ejercicios de álgebra y algoritmos",
-      "completed": true
+      "completed": true,
+      "priority": "high"
     },
     {
       "id": "3",
       "title": "Preparar la cena",
       "description": "Cocinar pasta con salsa de tomate",
-      "completed": false
+      "completed": false,
+      "priority": "high"
     },
     {
       "id": "4",
       "title": "Ir al gimnasio",
       "description": "Rutina de piernas y cardio",
-      "completed": false
+      "completed": false,
+      "priority": "low"
     },
     {
       "id": "5",
       "title": "Leer un libro",
       "description": "Avanzar con 'Clean Code' de Robert C. Martin",
-      "completed": true
+      "completed": true,
+      "priority": "low"
     },
     {
       "id": "6",
       "title": "Revisar emails",
       "description": "Responder mensajes pendientes del trabajo",
-      "completed": false
+      "completed": true,
+      "priority": "high"
     },
     {
-      "id": "cd1d",
-      "title": "asd",
-      "description": "asd",
+      "id": "e8dc",
+      "title": "fghdrhr",
+      "description": "drhdrh",
+      "priority": "medium",
       "completed": false
     }
   ]
