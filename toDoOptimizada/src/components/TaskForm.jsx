@@ -1,7 +1,6 @@
-import { useRef } from "react"
-import { useState } from "react";
+import { useRef, useState } from "react"
 
-function TaskForm() {
+function TaskForm({ onAddTask }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState("");
@@ -39,6 +38,8 @@ function TaskForm() {
 
             setTitle("");
             setDescription("");
+            onAddTask(data);
+
 
             focusInput();
 
@@ -64,9 +65,11 @@ function TaskForm() {
                     onChange={(e) => setDescription(e.target.value)}
                 />
 
-                <input type="checkbox" 
-                    onChange={(e) => setPriority(e.target.value)}
-                    value="high"/> Prioridad
+                <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                    <option value="high">Alta</option>
+                    <option value="medium">Media</option>
+                    <option value="low">Baja</option>
+                </select>
                 <button type="submit">Agregar Tarea</button>
             </form>
         </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback} from "react";
 import TaskItem from "./TaskItem.jsx";
+import TaskForm from "./TaskForm.jsx";
 const API_URL = "http://localhost:3000/tasks"; 
 
 const TaskList = () => {
@@ -21,6 +22,10 @@ const TaskList = () => {
     .then((data) => setTasks(data))
     .catch((err) => console.error(err));
   }, []);
+
+    const handleAddTask = useCallback((newTask) => {
+        setTasks(prev => [...prev, newTask]);
+    }, []);
 
   const handleDelete = useCallback((id) => { //Se usa callBack porque así cuando el "TaskItem" lo reciba como prop, no va a re-renderizarse, por lo que podrá usar la función
       fetch(`${API_URL}/${id}`, { method: "DELETE" })
@@ -50,6 +55,8 @@ const TaskList = () => {
 
   return (
     <div>
+        <h1>Habemus Taream Sanctam</h1>
+        <TaskForm onAddTask={handleAddTask} />
       <button onClick={() => setHighPriorityVisible(!highPriorityVisible)}>{highPriorityVisible ? "Mostrar todas las tareas" : "Mostrar solo tareas de alta prioridad"}</button>
     <h3>Tareas pendientes: {pendingTasksCount}</h3>
               <ul>

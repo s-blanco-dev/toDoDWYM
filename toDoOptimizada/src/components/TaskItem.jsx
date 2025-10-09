@@ -8,10 +8,9 @@ const TaskItem = ({ task, onDelete, onComplete }) => {
         <hr/>
         {task.description}
         <p>Prioridad: {task.priority}</p>
-        <p>{task.completed ? "Eguro, completada" : "Pendiente"}</p>
           <button onClick={() => onDelete(task.id)}>Eliminar</button>
           <button onClick={() => onComplete(task.id, task.completed)}>
-            {task.completed ? "Completada " : "Marcar como completada"}
+            <p>{task.completed ? "Eguro, completada" : "Pendiente"}</p>
           </button>
 
       </span>
