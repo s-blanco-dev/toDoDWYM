@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo} from "react";
+import React, { useEffect, useState, useMemo, useCallback} from "react";
 import TaskItem from "./TaskItem.jsx";
 const API_URL = "http://localhost:3000/tasks"; 
 
@@ -22,9 +22,31 @@ const TaskList = () => {
     .catch((err) => console.error(err));
   }, []);
 
-  const pendingTasksCount = useMemo(() => {
+  const handleDelete = useCallback((id) => { //Se usa callBack porque así cuando el "TaskItem" lo reciba como prop, no va a re-renderizarse, por lo que podrá usar la función
+      fetch(`${API_URL}/${id}`, { method: "DELETE" })
+          .then(() => setTasks(prev => prev.filter(task => task.id !== id)));
+    }, []);
+
+  const handleComplete = useCallback((id, estadoActual) => {
+        fetch(`${API_URL}/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ completed: !estadoActual })
+        })
+            .then(res => res.json())
+            .then(() => {
+                setTasks(prev =>
+                    prev.map(task =>
+                        task.id === id ? { ...task, completed: !estadoActual } : task
+                    )
+                );
+            })
+            .catch(err => console.error("Error al actualizar tarea:", err));
+        }, []);
+
+    const pendingTasksCount = useMemo(() => {
     return tasks.filter((t) => t.completed == false).length;
-  }, [tasks])
+    }, [tasks])
 
   return (
     <div>
@@ -35,6 +57,8 @@ const TaskList = () => {
             <TaskItem
               key={task.id}
               task={task}
+              onDelete={handleDelete}
+              onComplete = {handleComplete}
             />
           ))}
         </ul>
